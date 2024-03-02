@@ -18,19 +18,20 @@ function createApp(): Express {
     const app = express();
 
     app.use(express.json());
-    app.use("/api", routes);
 
     // enable CORS - Cross Origin Resource Sharing
     app.use(
         cors({
-            origin: ["http://localhost:3000"],
+            origin: [process.env.FRONTEND_URL!],
             credentials: true,
         })
     );
 
+    // Express session middleware
+    //need to add session store to save session between server restarts
     app.use(
         session({
-            secret: "KALJBNFLKJASDBFOIASJDNFKLAJHSDF",
+            secret: process.env.SESSION_SECRET || "secret",
             resave: false,
             saveUninitialized: false,
             cookie: {
@@ -39,8 +40,12 @@ function createApp(): Express {
         })
     );
 
+    // Passport middleware
     app.use(passport.initialize());
     app.use(passport.session());
+
+    // Routes
+    app.use("/api", routes);
 
     return app;
 }

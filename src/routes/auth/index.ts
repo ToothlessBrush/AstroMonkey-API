@@ -3,14 +3,15 @@ import passport from "passport";
 const router = Router();
 
 router.get("/discord", passport.authenticate("discord"), (req, res) => {
-    res.send("Logging in with Discord");
+    res.sendStatus(200);
 });
 
 router.get(
-    "/discord/redirect",
-    passport.authenticate("discord"),
+    "/discord/callback",
+    passport.authenticate("discord", { failureRedirect: "/" }),
     (req, res) => {
-        res.send("Redirected from Discord");
+        //res.sendStatus(200);
+        res.redirect(process.env.FRONTEND_URL! + "/dashboard");
     }
 );
 
