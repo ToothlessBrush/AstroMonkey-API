@@ -15,4 +15,8 @@ router.get(
     }
 );
 
+router.get("/status", (req, res) => {
+    req.user ? res.send(req.user) : res.sendStatus(401);
+});
+
 export default router;

@@ -5,6 +5,7 @@ import cors from "cors";
 import routes from "../routes";
 import session from "express-session";
 import passport from "passport";
+import store from "connect-mongo";
 require("../strategies/discord");
 
 /**
@@ -37,6 +38,9 @@ function createApp(): Express {
             cookie: {
                 maxAge: 60000 * 60 * 24 * 7, // 7 days
             },
+            store: store.create({
+                mongoUrl: process.env.MONGO_URI!,
+            }),
         })
     );
 

@@ -21,8 +21,8 @@ passport.use(
         {
             clientID: process.env.DISCORD_CLIENT_ID!,
             clientSecret: process.env.DISCORD_CLIENT_SECRET!,
-            callbackURL:
-                process.env.BACKEND_URL! + "/api/auth/discord/callback",
+            callbackURL: `${process.env
+                .BACKEND_URL!}/api/auth/discord/callback`,
             scope: ["identify", "guilds"],
         },
         async (
