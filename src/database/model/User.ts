@@ -1,8 +1,9 @@
-import { Schema, model, Document } from "mongoose";
+import { Schema, model, Document, ObjectId } from "mongoose";
 import { playlistSchema, IPlaylist } from "./Playlist";
 import { TrackJSON } from "./TrackJSON";
 
 interface IUser extends Document {
+    _id: string;
     name: string;
     ID: string;
     likes: TrackJSON[];
