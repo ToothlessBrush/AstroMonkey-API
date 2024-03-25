@@ -12,6 +12,8 @@ async function main() {
     try {
         const app = createApp();
 
+        //git test
+
         app.listen(port, () => console.log(`Server running on port ${port}`));
     } catch (error) {
         console.error(error);
